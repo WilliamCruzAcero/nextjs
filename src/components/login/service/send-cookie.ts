@@ -14,4 +14,6 @@ export function sendCookie({ token, expirationInDays }: SendCookieInput) {
         sameSite: 'lax',
         path: '/',
     });
+
+    return true;
 }

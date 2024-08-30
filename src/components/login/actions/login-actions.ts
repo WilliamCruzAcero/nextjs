@@ -16,32 +16,16 @@ export async function loginAction(formData: unknown) {
     const { email, password } = parseResult.data;
     const user = await getUserService(email);
 
-    if ( !user || !matches(user.password, password) ) return { errors: [{ message: 'Bad credentials' }] };
+    if ( !user || await matches(user.password, password) === false ) return { errors: [{ message: 'Bad credentials' }] };
     
     const token = await createToken({
         id: user.id
     });
-
+    
     sendCookie({
         token,
         expirationInDays: 7,
     });
 
-    
-
     return {errors: []};
 }
-
-// // 5. Redirect to /login if the user is not authenticated
-// if (isProtectedRoute && !session?.userId) {
-//     return NextResponse.redirect(new URL('/login', req.nextUrl))
-//   }
- 
-//   // 6. Redirect to /dashboard if the user is authenticated
-//   if (
-//     isPublicRoute &&
-//     session?.userId &&
-//     !req.nextUrl.pathname.startsWith('/dashboard')
-//   ) {
-//     return NextResponse.redirect(new URL('/dashboard', req.nextUrl))
-//   }

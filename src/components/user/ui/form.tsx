@@ -6,12 +6,14 @@ import { SubmitHandler, useForm } from "react-hook-form";
 import { UserForm, UserFormSchema } from "../domain/user-form";
 import { UserAction } from "../actions/user-action";
 import { SubmitButton } from "@/components/shared/ui/submit-button";
+import { useRouter } from "next/navigation";
  
 type UserFormProps = {
     size?: 'sm' | 'md' | 'lg';
 }
 
 export function UserFormComponent({ size }: UserFormProps) {
+    const router = useRouter();
     const {
         register,
         formState: { errors, isSubmitting },
@@ -23,6 +25,7 @@ export function UserFormComponent({ size }: UserFormProps) {
     
     const onSubmit: SubmitHandler<UserForm> = async (data) => {
         const {errors} = await UserAction(data);
+        if ( errors.length === 0) router.push('/login');
         alert(JSON.stringify(errors)); 
     }
 

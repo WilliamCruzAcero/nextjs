@@ -10,10 +10,9 @@ export async function createToken(payload: Pick<User, 'id'>) {
 }
 
 export async function veryfiToken() {
-    const token = cookies().get('token')?.value
+    const token = cookies().get('token')?.value as string
 
     if ( !token ) return { errors: [{ message: 'No valid token supplied.'}]} 
     const idUser = jwt.verify(token, secret);
-   
     return idUser
 }

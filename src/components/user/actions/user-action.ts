@@ -4,7 +4,6 @@ import { getUserService } from "@/components/shared/services/get-user-service";
 import { UserFormSchema } from "../domain/user-form";
 import { conectDB } from "@/components/connectDataBase/conect";
 import { createUser } from "../service/create-user";
-import { redirect } from "next/dist/server/api-utils";
 
 conectDB();
 
