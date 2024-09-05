@@ -17,3 +17,4 @@ export function sendCookie({ token, expirationInDays }: SendCookieInput) {
 
     return true;
 }
+

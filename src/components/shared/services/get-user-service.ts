@@ -12,6 +12,7 @@ export async function getUserService(email: string): Promise<User | undefined> {
         lastname: user.lastname,
         email: user.email,
         password: user.password,
-        active: user.active
+        active: user.active,
+        role: user.role,
     }
 }

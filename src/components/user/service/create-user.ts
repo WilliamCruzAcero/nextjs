@@ -2,7 +2,7 @@
 import { UserModel } from "@/components/shared/models/user.mongoose"
 import { hash } from "./hash-service";
 
-export async function createUser(name: string, lastname: string, email: string, password: string) {
+export async function createUser(name: string, lastname: string, email: string, password: string, role: string ) {
     
     const hashedPassword = await hash(password);
     
@@ -11,6 +11,7 @@ export async function createUser(name: string, lastname: string, email: string, 
         lastname,
         email,
         password: hashedPassword,
+        role,
     })   
 
     return { errors: [] }; 

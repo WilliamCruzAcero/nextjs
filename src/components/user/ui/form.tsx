@@ -1,16 +1,22 @@
 "use client";
 
-import { Input } from "@nextui-org/react";
+import { Input, Select, SelectItem } from "@nextui-org/react";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { SubmitHandler, useForm } from "react-hook-form";
 import { UserForm, UserFormSchema } from "../domain/user-form";
 import { UserAction } from "../actions/user-action";
 import { SubmitButton } from "@/components/shared/ui/submit-button";
 import { useRouter } from "next/navigation";
- 
+
 type UserFormProps = {
     size?: 'sm' | 'md' | 'lg';
 }
+
+const roles = [
+    {key: "admin", label: "ADMIN"},
+    {key: "client", label: "CLIENT"},
+  ];
+
 
 export function UserFormComponent({ size }: UserFormProps) {
     const router = useRouter();
@@ -22,11 +28,11 @@ export function UserFormComponent({ size }: UserFormProps) {
         resolver: zodResolver(UserFormSchema),
         defaultValues: {}
     });
-    
+
     const onSubmit: SubmitHandler<UserForm> = async (data) => {
-        const {errors} = await UserAction(data);
-        if ( errors.length === 0) router.push('/login');
-        alert(JSON.stringify(errors)); 
+        const { errors } = await UserAction(data);
+        if (errors.length === 0) router.push('/login');
+        alert(JSON.stringify(errors));
     }
 
     return (
@@ -66,7 +72,18 @@ export function UserFormComponent({ size }: UserFormProps) {
                 isInvalid={errors.password ? true : false}
                 errorMessage={errors.password?.message}
             />
+            <Select
+                label="Role"
+                {...register('role')}
+                defaultSelectedKeys={["client"]}                
+            >
+                {roles.map((role) => (
+                    <SelectItem key={role.key}>
+                        {role.label}
+                    </SelectItem>
+                ))}
+            </Select>
             <SubmitButton label="Send" color="primary" isSubmitting={isSubmitting} />
         </form>
     )
-}
+}  

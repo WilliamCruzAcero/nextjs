@@ -11,12 +11,12 @@ export async function UserAction(formData: unknown) {
     const parseResult = UserFormSchema.safeParse(formData);
     if (!parseResult.success) return { errors: [{ message: 'Invalid form data' }] }
 
-    const { name, lastname, email, password } = parseResult.data;
-    
-    const user = await getUserService(email);
-    if ( user ) return { errors: [{ message: 'User already exists' }] };
+    const { name, lastname, email, password, role } = parseResult.data;
 
-    const msg = await createUser(name, lastname, email, password);
-    
+    const user = await getUserService(email);
+    if (user) return { errors: [{ message: 'User already exists' }] };
+
+    const msg = await createUser(name, lastname, email, password, role);
+
     return msg
 }

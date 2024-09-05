@@ -5,4 +5,5 @@ export type User = {
     email: string,
     password: string,
     active: boolean, 
+    role: string,
 }
