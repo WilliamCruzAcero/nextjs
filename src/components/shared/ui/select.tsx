@@ -6,7 +6,7 @@ const roles = [
     { key: "client", label: "CLIENT" },
 ];
 
-export default function SelectMul() {
+export default function SelectOption() {
     return (
         <Select
             label="role"

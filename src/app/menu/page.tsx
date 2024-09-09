@@ -1,9 +1,9 @@
-import { CardRestaurantComponent } from "@/components/restaurant/ui/form";
+import { MenuServerComponent } from "@/components/restaurant/ui/menu-server-component";
 
-export default function chat() {
+export default function menu() {
     return (
         <main className="flex min-h-screen flex-col items-center justify-between p-24">
-           <CardRestaurantComponent/>
+           <MenuServerComponent/>
         </main>
     )
 }
