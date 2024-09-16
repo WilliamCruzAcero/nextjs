@@ -1,9 +1,13 @@
 import { MenuServerComponent } from "@/components/restaurant/ui/menu-server-component";
+import NavbarApp from "@/components/shared/ui/navbar";
 
 export default function menu() {
     return (
-        <main className="flex min-h-screen flex-col items-center justify-between p-24">
+        <>
+           <NavbarApp/>
+        <main className="flex min-h-screen flex-col items-center justify-between p-6">
            <MenuServerComponent/>
         </main>
+        </>
     )
 }

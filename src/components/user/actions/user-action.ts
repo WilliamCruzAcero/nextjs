@@ -14,9 +14,9 @@ export async function UserAction(formData: unknown) {
     const { name, lastname, email, password, role } = parseResult.data;
 
     const user = await getUserService(email);
-    if (user) return { errors: [{ message: 'User already exists' }] };
+    if (user) return { errors: [{ message: 'User already exists.' }] };
 
-    const msg = await createUser(name, lastname, email, password, role);
+    await createUser(name, lastname, email, password, role);
 
-    return msg
+    return { errors: [] }; 
 }
