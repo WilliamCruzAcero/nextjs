@@ -1,17 +1,12 @@
 import React from "react";
 import { Navbar, NavbarBrand, NavbarContent, NavbarItem, Link, Button, Badge } from "@nextui-org/react";
 import { CartIcon } from "@nextui-org/shared-icons";
-import { countProdService } from "@/components/cart/actions/cart-action";
+import { countProdService } from "@/components/menu/actions/menu-action";
 
 export default function NavbarApp() {
-    let count
-    const countProd = () => {
-        count = countProdService();
-    }
-    countProd();
-
+    const count = countProdService();
     return (
-        <Navbar>
+        <Navbar >
             <NavbarBrand>
                 <AcmeLogo />
                 <p className="font-bold text-inherit">ACME</p>

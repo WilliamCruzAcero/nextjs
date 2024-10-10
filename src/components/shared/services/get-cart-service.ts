@@ -1,5 +1,5 @@
-import { CartModel } from "../models/cart.mongoose";
 import { Cart } from "../models/cart";
+import { CartModel } from "../models/cart.mongoose";
 
 export async function getProductCartService(idProd: string): Promise<Cart | undefined> {
     
@@ -15,16 +15,13 @@ export async function getProductCartService(idProd: string): Promise<Cart | unde
 
 }
 
-export async function getProductsCartService() {
+export async function getProductsCartService(): Promise<Cart[]> {
     
     const cartProducts = await CartModel.find().lean();
-    // const count = cartProducts.length
     
-    // return count 
-    return cartProducts.map( c => ({
-        id: c._id.toString(),
-        idProd: c.idProd,
-        amount: c.amount,     
+    return cartProducts.map( cp => ({
+        id: cp._id.toString(),
+        idProd: cp.idProd,
+        amount: cp.amount,     
     }));
-
 }

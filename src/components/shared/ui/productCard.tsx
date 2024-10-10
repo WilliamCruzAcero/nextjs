@@ -3,8 +3,8 @@
 
 import { useState } from "react";
 import { Product } from "../models/product";
-import { CartAtion } from "@/components/cart/actions/cart-action";
-import { redirect, useRouter } from "next/navigation";
+import { MenuAction } from "@/components/menu/actions/menu-action";
+import { useRouter } from "next/navigation";
 
 
 type ProductComponentProps = {
@@ -17,7 +17,7 @@ export function ProductCard(product: ProductComponentProps) {
     const idProd = product.product.id
 
     const addCart = () => {
-        CartAtion(idProd, count)
+        MenuAction(idProd, count)
         router.push('/menu')
     }
 
@@ -33,8 +33,8 @@ export function ProductCard(product: ProductComponentProps) {
 
     return (
         <table className="w-full text-sm text-left rtl:text-right text-gray-500 dark:text-gray-400">
-            <tbody>
-                <tr className="bg-white border-b dark:bg-gray-800 dark:border-gray-700 hover:bg-gray-50 dark:hover:bg-gray-600">
+            <tbody className="w-full">
+                <tr className="w-full bg-white border-b dark:bg-gray-800 dark:border-gray-700 hover:bg-gray-50 dark:hover:bg-gray-600">
                     <td className="p-4">
                         <img src={product.product.img} className="w-max md:w-64  min-w-80 max-w-screen-xl max-h-full sm:rounded-lg" />
                     </td>

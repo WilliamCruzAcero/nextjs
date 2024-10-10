@@ -1,4 +1,5 @@
 import { CartModel } from "@/components/shared/models/cart.mongoose";
+import { model } from "mongoose";
 
 export async function createCart(idProd: string, amount: number) {
     await CartModel.create({
@@ -9,6 +10,9 @@ export async function createCart(idProd: string, amount: number) {
     return { errors: [] }
 }
 
-export async function updateCart(amount: number) {
-    console.log('UPDATE')// await CartModel
+export async function updateCart(idProd: string, newAmount: number) {
+    await CartModel.findOneAndUpdate(
+        {idProd},
+        {$inc: {amount: newAmount}}
+    );
 }
