@@ -3,10 +3,12 @@ import { Navbar, NavbarBrand, NavbarContent, NavbarItem, Link, Button, Badge } f
 import { CartIcon } from "@nextui-org/shared-icons";
 import { countProdService } from "@/components/menu/actions/menu-action";
 
-export default function NavbarApp() {
-    const count = countProdService();
+export default async function NavbarApp() {
+    const count = await countProdService();
+    let isInvisible = count >= 1 ? false : true;
+    
     return (
-        <Navbar >
+        <Navbar>
             <NavbarBrand>
                 <AcmeLogo />
                 <p className="font-bold text-inherit">ACME</p>
@@ -17,9 +19,13 @@ export default function NavbarApp() {
                     href={'/cart'}
                     className="cursor-pointer"
                 >
-                    <Badge color="danger" content={count} shape="circle">
-                            <CartIcon size={30} />
-                        </Badge>
+                    <Badge
+                        color="danger"
+                        content={count}
+                        isInvisible={isInvisible}
+                        shape="circle">
+                        <CartIcon size={30} />
+                    </Badge>
                 </NavbarItem>
                 <NavbarItem >
                     <Button as={Link} color="primary" href="/" variant="flat">

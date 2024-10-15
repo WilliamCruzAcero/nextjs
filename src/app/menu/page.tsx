@@ -3,11 +3,9 @@ import NavbarApp from "@/components/shared/ui/navbar";
 
 export default function menu() {
     return (
-        <>
+        <main >
             <NavbarApp />
-            <main className="w-full flex min-h-screen flex-col items-center justify-between p-6">
-                <MenuServerComponent />
-            </main>
-        </>
-    )
+            <MenuServerComponent />
+        </main>
+    );
 }
