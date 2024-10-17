@@ -32,11 +32,11 @@ export function ProductCard(product: ProductComponentProps) {
     }
 
     return (
-        <table className="w-full text-sm text-left rtl:text-right text-gray-500 dark:text-gray-400">
+        <table className="w-full">
             <tbody className="w-full">
                 <tr className="w-full bg-white border-b dark:bg-gray-800 dark:border-gray-700 hover:bg-gray-50 dark:hover:bg-gray-600">
                     <td className="w-full p-4">
-                        <img src={product.product.img} className="w-max md:w-64  min-w-80 max-w-screen-xl max-h-full sm:rounded-lg" />
+                        <img src={product.product.img} className="w-max md:w-64 min-w-80 max-w-screen-xl max-h-full sm:rounded-lg" />
                     </td>
                     <td className="px-6 py-4 font-semibold text-gray-900 dark:text-white">
                         {product.product.name}
